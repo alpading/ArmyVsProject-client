@@ -1,0 +1,16 @@
+.genre{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 70px;
+	margin: 10px 0px;
+	background-color: green;
+}
+.genre__name{
+}
+.genre__static_button{
+	width: 40px;
+	height: 40px;
+	background-color: yellow;
+}
