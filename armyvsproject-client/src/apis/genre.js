@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { baseUrl } from './global.js'
+import { baseUrl } from '../module/global.js'
 
 async function getRandomGenreList(){
 	const result = await axios.get(baseUrl + 'genre')
