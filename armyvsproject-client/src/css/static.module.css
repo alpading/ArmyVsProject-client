@@ -1,0 +1,20 @@
+.static{
+	font-family: 'CookieRun-Regular';
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.static__genreName{
+	font-size:40px;
+	margin: 10px 0px;
+}
+
+.static__elemRankingStatic_container{
+	width: 100%;
+	display: flex;
+	flex-direction : column;
+	align-items: center;
+}

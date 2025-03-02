@@ -1,4 +1,5 @@
 .game{
+	font-family: 'CookieRun-Regular';
 	width: 100%;
 	height: 100%;
 	display: flex;
@@ -7,8 +8,13 @@
 	flex-grow: 1;
 }
 .game__genre_name{
+	margin: 5px 0px;
 	width: 100%;
-	height: 20px;
+	font-size: 30px;
+	text-align: center;
+}
+.game__progress{
+	text-align: center;
 }
 .game__elem_wrapper{
 	width: 100%;

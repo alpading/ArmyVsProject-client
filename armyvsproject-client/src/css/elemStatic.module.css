@@ -1,0 +1,17 @@
+.elemStatic {
+	width : 100%;
+	height : 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.elemStatic__selected {
+	background-color: green;
+	opacity: 0.5;
+}
+
+.elemStatic__unselected {
+	background-color: red;
+	opacity: 0.5;
+}

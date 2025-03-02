@@ -6,4 +6,9 @@ async function getRandomGenreList(){
 	return result.data
 }
 
-export { getRandomGenreList }
+async function getAllGenreList(){
+	const result = await axios.get(baseUrl + 'genre/all')
+	return result.data
+}
+
+export { getRandomGenreList, getAllGenreList }

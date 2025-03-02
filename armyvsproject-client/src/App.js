@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Main from './pages/Main.js'
 import Game from './pages/Game.js'
 import Static from './pages/Static.js'
+import GameResult from './pages/GameResult.js'
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 				<Route path='/' element = {<Main/>}/>
 				<Route path='/game' element = {<Game/>}/>
 				<Route path='/static' element = {<Static/>}/>
+				<Route path='/gameResult' element = {<GameResult/>}/>
 	  	</Routes>
     </div>
   )

@@ -11,4 +11,16 @@ async function getElem(param){
 	return result.data
 }
 
-export { getRandomElemList, getElem }
+async function getElemListRanking(param){
+	const result = await axios.get(baseUrl + `elem/${param}/list/ranking`)
+	return result.data
+}
+
+async function putElemWinCount(param){
+	const result = await axios.put(baseUrl + `elem/win`, {
+		'elemId' : param
+	})
+	return result.data
+}
+
+export { getRandomElemList, getElem, getElemListRanking, putElemWinCount }
