@@ -7,8 +7,16 @@
 	align-items: center;
 }
 
+.static__button_nav{
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+}
+
 .static__genreName{
-	font-size:40px;
+	text-align: center;
+	word-break: keep-all;
+	font-size:30px;
 	margin: 10px 0px;
 }
 

@@ -1,56 +1,45 @@
  .elem{
-	font-family: 'CookieRun-Regular';
-	font-size: 28px;
-	min-width: 240px;
-	aspect-ratio: 1.6;
-	flex-grow: 1;
-	flex-shrink: 1;
-	border: 2px solid black;
-	border-radius: 10px;
-	margin: 20px;
-}
-
- .elem__content{
-	display: flex;
+	display:flex;
 	align-items: center;
 	justify-content: center;
-  width : 100%;
-  height: 100%;
+	font-family: 'CookieRun-Regular';
+	font-size: 28px;
+	height: 100%;
+  max-height: 40%;
+	background-color: var(--secondary-color);
+	border: 2px solid black;
+	border-radius: 10px;
+	margin: 10px;
+	text-align: center;
+	word-break: keep-all;
 }
 
-/* 테블릿 가로 (해상도 768px ~ 1023px)*/ 
-@media (min-width:768px) and (max-width:1023px) { 
+.elem__content{
+	height: 100%;
+	width: 100%;
+	flex-grow: 1;
+	display:flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.elem__content_elemName{
+	font-size: 28px;
+}
+
+@media (orientation: landscape) { 
 	 .elem{
-		min-width: 240px;
-		aspect-ratio: 1.6;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		font-family: 'CookieRun-Regular';
+		font-size: 28px;
 		flex-grow: 1;
-		flex-shrink: 1;
+		max-width: 40%;
+		min-height: 80%;
 		background-color: var(--secondary-color);
-		margin: 20px;
-	}
-  
-} 
-
-/* 모바일 가로 & 테블릿 세로 (해상도 480px ~ 767px)*/ 
-@media (min-width:480px) and (max-width:767px) {
-  .elem{
-		min-width: 240px;
-		aspect-ratio: 1.6;
-		flex-grow: 1;
-		flex-shrink: 1;
-		background-color: var(--secondary-color);
-		margin: 20px;
+		margin: 10px;
+		text-align: center;
+	  word-break: keep-all;
 	}
 } 
-
-/* 모바일 세로 (해상도 ~ 479px)*/ 
-@media(max-width:479px) {
-	.elem{
-		min-width: 200px;
-		aspect-ratio: 1.6;
-		flex-grow: 1;
-		flex-shrink: 1;
-		background-color: var(--secondary-color);
-		margin: 20px;
-	}
-}

@@ -6,12 +6,13 @@ import { useAtom } from 'jotai'
 import Elem from '../components/Elem.js'
 
 import { getRandomElemList } from '../apis/elem.js'
-import { randomElemListAtom, gameProgressAtom, gameElemAtom } from '../store/jotai.js'
+import { gameProgressAtom, gameElemAtom, isButtonActiveAtom, isIntroActiveAtom } from '../store/jotai.js'
 
 function Game(){
-	const [ randomElemList, setRandomElemList] = useAtom(randomElemListAtom)
 	const [ gameProgress, setGameProgress ] = useAtom(gameProgressAtom)
 	const [ gameElem, setGameElem ] = useAtom(gameElemAtom)
+	const [ isButtonActive, setIsButtonActive ] = useAtom(isButtonActiveAtom)
+	const [ isIntroActive, setIsIntroActive ] = useAtom(isIntroActiveAtom)
 	
 	useEffect(() => {
 		async function axios(){
@@ -20,19 +21,31 @@ function Game(){
 			// selected : -1 (선택못받음) 0 (미결정) 1 (선택받음)
 			await setGameElem([{'data' : result[0], 'selected' : 0}, { 'data' : result[1], 'selected' : 0}])
 			await setGameProgress(0)
+			await setIsButtonActive(true)
+			await setIsIntroActive(true)
+			await setTimeout(()=>{
+				setIsIntroActive(false)
+			},2000)
+			
 			await window.sessionStorage.setItem('elemList', JSON.stringify(result))
 		}
 		axios()
 	},[])
 	
 	const location = useLocation()
+	
 	return(
 		<div className={styles.game}>
+			<div className={ isIntroActive ? styles.game__intro_active : styles.game__intro_deactive}>
+				<div className={styles.game__intro_genre_name}>
+					{location.state.name}
+				</div>
+			</div>
 			<div className={styles.game__genre_name}>
 				{ location.state.name }
 			</div>
 			<div className={styles.game__progress}>
-				{ gameProgress } / 10
+				{ gameProgress + 1 } / 10
 			</div>
 			<div className={styles.game__elem_wrapper}>
 				<div className={styles.game__elem_container}>

@@ -3,7 +3,7 @@ import calculateWinRate from '../modules/calculateWinRate.js'
 import ElemRankingStatic from '../components/ElemRankingStatic.js'
 import { useEffect } from 'react'
 import { useAtom } from 'jotai'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { getElemListRanking } from '../apis/elem.js'
 
@@ -12,6 +12,7 @@ import { elemListRankingAtom } from '../store/jotai.js'
 function Static() {
 	const [ elemListRanking, setElemListRanking ] = useAtom(elemListRankingAtom)
 	const location = useLocation() 
+	const navigate = useNavigate()
 	
 	useEffect(() => {
 		async function axios(){
@@ -26,6 +27,14 @@ function Static() {
 		<div className={styles.static}>
 			<div className={styles.static__genreName}>
 				{location.state.genreName}
+			</div>
+			<div className={styles.static__button_nav}>
+				<div className={styles.static__home_button} onClick={()=>{navigate('/')}}>
+					처음으로
+				</div>
+				<div className={styles.static__return_button} onClick={()=>{navigate(-1)}}>
+					이전으로
+				</div>
 			</div>
 			<div className={styles.static__elemRankingStatic_container}>
 				{elemListRanking.map((elem, index) => {

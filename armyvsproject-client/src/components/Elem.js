@@ -1,6 +1,5 @@
 import styles from '../css/elem.module.css'
 import { useAtom } from 'jotai'
-import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import selectElem from '../modules/selectElem.js'
@@ -8,6 +7,7 @@ import differentiateElem from '../modules/differentiateElem.js'
 import { gameElemAtom, selectionWinRateAtom, gameProgressAtom, gameIsFinishedAtom, isButtonActiveAtom } from '../store/jotai.js'
 import ElemStatic from '../components/ElemStatic.js'
 import { maxSelectionPerGame } from '../modules/global.js'
+import { putElemWinCount } from '../apis/elem.js'
 
 function Elem(props) {
 	const [ gameElem, setGameElem ] = useAtom(gameElemAtom)
@@ -18,7 +18,6 @@ function Elem(props) {
 	const [ thisElem, opponentElem ] = differentiateElem(gameElem, props.elemId)
 	
 	const navigate = useNavigate()
-	console.log(isButtonActive)
 	
 	return(
 		<>
@@ -43,24 +42,25 @@ function Elem(props) {
 
 						// 다음게임 세팅
 
-				const nextElemData = await JSON.parse(window.sessionStorage.getItem('elemList'))[gameProgress + 1]
+				const nextElemData = await JSON.parse(window.sessionStorage.getItem('elemList'))[gameProgress + 2]
 				const nextElem = { 'data' : nextElemData, 'selected' : 0 }
-				await setTimeout(() => {
-					if (gameProgress == maxSelectionPerGame){
-						navigate('/gameResult', { state : { genreName : props.genreName, genreId : props.genreId, elemName : thisElem.data.name, elemId : thisElem.data.id }})
+				await setTimeout(async() => {
+					if (gameProgress == maxSelectionPerGame - 1){
+						await putElemWinCount(thisElem.data.id)
+						await navigate('/gameResult', { state : { genreName : props.genreName, genreId : props.genreId, elemName : thisElem.data.name, elemId : thisElem.data.id }})
 						return 0
 					}
 						thisElem.selected = 0
 						setGameElem([thisElem, nextElem])
 						setGameProgress(gameProgress + 1)
 						setIsButtonActive(true)
-					}, 2000)}
+					}, 1500)}
 				}>
 
 				 <div className={styles.elem__content}>
 					{
 						{
-							'0' : <div>{props.elemName}</div>,
+							'0' : <div className={styles.elem__content_elemName}>{props.elemName}</div>,
 							'1' : <ElemStatic isSelected={true} winRate ={selectionWinRate}/>,
 							'-1' : <ElemStatic isSelected={false} winRate ={100 - selectionWinRate}/>,
 						}[thisElem.selected]
@@ -74,7 +74,7 @@ function Elem(props) {
 				 <div className={styles.elem__content}>
 					{
 						{
-							'0' : <div>{props.elemName}</div>,
+							'0' : <div className={styles.elem__content_elemName}>{props.elemName}</div>,
 							'1' : <ElemStatic isSelected={true} winRate ={selectionWinRate}/>,
 							'-1' : <ElemStatic isSelected={false} winRate ={100 - selectionWinRate}/>,
 						}[thisElem.selected]

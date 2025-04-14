@@ -8,7 +8,10 @@ function ElemRankingStatic(props) {
 			<div className={styles.elemRankingStatic__rank}>
 				{props.id + 1}위
 			</div>
-			<div className={styles.elemRankingStatic}>
+			<div className={props.id == 0 ? styles.elemRankingStaticFirst
+											: (props.id == 1) ? styles.elemRankingStaticSecond
+											: (props.id == 2) ? styles.elemRankingStaticThird
+											: styles.elemRankingStatic}>
 				<div className={styles.elemRankingStatic__topNav}>
 					<div className={styles.elemRankingStatic__elemName}>
 						{props.elemName}

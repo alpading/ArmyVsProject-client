@@ -15,7 +15,6 @@ function GameResult(){
 	
 	useEffect(() => {
 		async function axios(){
-			await putElemWinCount(location.state.elemId)
 			const result = await getElemListRanking(parseInt(location.state.genreId))
 			const elemStatic = calculateWinRate(result.data)
 			elemStatic.forEach((elem) => {
@@ -38,13 +37,13 @@ function GameResult(){
 					{location.state.elemName}
 				</div>
 				<div className={styles.gameResult__static}>
-					{elemWinRate}%의 사용자가 {location.state.elemName}를 선택했습니다.
+					{elemWinRate}%의 사용자가 <br/> 같은 결과를 선택했습니다.
 				</div>
 				<div className={styles.gameResult__staticPage_button} onClick={() => {navigate('/static', { state : { genreId : location.state.genreId, genreName : location.state.genreName} })}}>
 					순위 보러 가기
 				</div>
 			</div>
-			{/* <ShareKakao genreName={location.state.genreName} elemName={location.state.elemName}/> */}
+			{<ShareKakao genreName={location.state.genreName} elemName={location.state.elemName}/>}
 		</div>
 	)
 }
