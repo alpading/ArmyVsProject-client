@@ -1,10 +1,10 @@
-const baseUrl = 'armyvsvsproject.com'
+const baseUrl = 'https://armyvsproject.com/'
 
 const maxSelectionPerGame = 10
 
 const shareKakaoImage = 'https://ifh.cc/g/1vWa93.png'
 
-const clientUrl = 'armyvsproject.com'
+const clientUrl = 'https://armyvsproject.com'
 
 const reactAppKey = '1560e0542fa31994e719bf6ac5290ac4'
 
